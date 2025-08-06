@@ -1,0 +1,20 @@
+{% extends 'employees/base.html' %}
+{% block content %}
+<h1>Employee Directory</h1>
+
+<form method="get">
+  <label>Filter by department:</label>
+  <input type="text" name="department" value="{{ request.GET.department }}">
+  <button type="submit">Search</button>
+</form>
+
+<ul>
+{% for emp in employees %}
+  <li><a href="{% url 'employee-detail' emp.pk %}">{{ emp.name }}</a> - {{ emp.department }}</li>
+{% endfor %}
+</ul>
+
+{% if user.is_staff %}
+  <a href="{% url 'employee-add' %}">Add New Employee</a>
+{% endif %}
+{% endblock %}
