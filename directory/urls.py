@@ -19,6 +19,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('employees.urls')),
+    path('', include('employees.urls')),  # Your app URLs
+
+    # Add this line to enable built-in auth URLs (login, logout, password reset, etc)
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
+
 
